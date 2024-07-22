@@ -1,11 +1,18 @@
+import { useAtom } from 'jotai'
+import { atomWithStorage } from 'jotai/utils'
 
-import { Anime } from "./Anime"
+// Set the string key and the initial value
+const darkModeAtom = atomWithStorage('darkMode', false)
 
-function App() {
+ const App = () => {
+  // Consume persisted state like any other atom
+  const [darkMode, setDarkMode] = useAtom(darkModeAtom)
+  const toggleDarkMode = () => setDarkMode(!darkMode)
   return (
     <>
-      <Anime></Anime>
-     </>
+      <h1>Welcome to {darkMode ? 'dark' : 'light'} mode!</h1>
+      <button onClick={toggleDarkMode}>toggle theme</button>
+    </>
   )
 }
 
